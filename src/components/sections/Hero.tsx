@@ -55,8 +55,8 @@ export function Hero() {
         </p>
 
         <p className="mb-10 max-w-2xl text-base text-text-secondary sm:text-lg">
-          I build scalable, production-grade web applications — from polished React
-          interfaces to robust NestJS backends — with a focus on clean architecture and
+          I build scalable, production-grade web applications, from polished React
+          interfaces to robust NestJS backends, with a focus on clean architecture and
           developer experience.
         </p>
 

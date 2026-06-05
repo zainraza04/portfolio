@@ -68,11 +68,8 @@ export function ContactForm() {
 
       setSubmitted(true);
       reset();
-    } catch {
-      const mailtoUrl = `mailto:hello@zainraza.dev?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
-      openMailto(mailtoUrl);
-      setSubmitted(true);
-      reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to send message");
     }
   };
 
