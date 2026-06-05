@@ -19,9 +19,7 @@ export function Projects({ projects }: ProjectsProps) {
           </h2>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={0.1}>
-          <ProjectsFilter projects={projects} />
-        </RevealOnScroll>
+        <ProjectsFilter projects={projects} />
       </div>
     </section>
   );

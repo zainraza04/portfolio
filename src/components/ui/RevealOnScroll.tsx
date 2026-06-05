@@ -27,7 +27,7 @@ export function RevealOnScroll({
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, amount: 0, margin: "0px 0px -40px 0px" }}
       variants={fadeUpVariants}
       transition={{ ...defaultTransition, delay }}
     >
@@ -53,7 +53,7 @@ export function RevealStagger({ children, className }: RevealStaggerProps) {
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0, margin: "0px 0px -40px 0px" }}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: 0.1 } },

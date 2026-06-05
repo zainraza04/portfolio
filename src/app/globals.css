@@ -59,6 +59,10 @@ body {
   overflow-x: hidden;
 }
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 ::selection {
   background: color-mix(in srgb, var(--accent-primary) 40%, transparent);
   color: var(--text-primary);

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -44,15 +44,33 @@ export function Navbar() {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-    setMobileOpen(false);
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
+  const closeMobileMenu = () => setMobileOpen(false);
+
+  const handleNavClick = (href: string, fromMobile = false) => {
+    const id = href.replace("#", "");
+    closeMobileMenu();
+
+    const doScroll = () => scrollToSection(id);
+
+    if (fromMobile) {
+      // Defer until menu closes — fixes iOS/mobile tap + scroll conflicts
+      window.setTimeout(doScroll, 200);
+    } else {
+      doScroll();
+    }
   };
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const id = href.replace("#", "");
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToContact = (fromMobile = false) => {
+    handleNavClick("#contact", fromMobile);
   };
 
   return (
@@ -61,6 +79,7 @@ export function Navbar() {
         <Link
           href="/"
           className="font-mono text-sm text-text-primary sm:text-base"
+          onClick={closeMobileMenu}
         >
           {"> Zain Raza"}
           <span className="cursor-blink text-terminal-green">_</span>
@@ -83,16 +102,21 @@ export function Navbar() {
               </button>
             );
           })}
-          <Button variant="outline" className="gradient-border px-4 py-2 text-xs" onClick={scrollToContact}>
+          <Button
+            variant="outline"
+            className="gradient-border px-4 py-2 text-xs"
+            onClick={() => scrollToContact()}
+          >
             Hire Me
           </Button>
         </div>
 
         <button
           type="button"
-          className="flex items-center justify-center text-text-primary md:hidden"
+          className="flex h-10 w-10 items-center justify-center text-text-primary touch-manipulation md:hidden"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -101,30 +125,38 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden border-t border-border bg-bg-secondary md:hidden"
+            key="mobile-menu"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="relative z-[60] border-t border-border bg-bg-secondary md:hidden"
           >
-            <div className="flex flex-col gap-4 px-4 py-6">
+            <div className="flex flex-col gap-1 px-4 py-4">
               {navLinks.map((link) => {
                 const id = link.href.replace("#", "");
                 return (
-                  <button
+                  <a
                     key={link.href}
-                    type="button"
-                    onClick={() => handleNavClick(link.href)}
+                    href={link.href}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      handleNavClick(link.href, true);
+                    }}
                     className={cn(
-                      "text-left font-mono text-sm text-text-secondary",
+                      "block py-3 font-mono text-sm text-text-secondary touch-manipulation active:text-accent-primary",
                       activeSection === id && "text-accent-secondary",
                     )}
                   >
                     {link.label}
-                  </button>
+                  </a>
                 );
               })}
-              <Button variant="primary" onClick={scrollToContact}>
+              <Button
+                variant="primary"
+                className="mt-2 w-full touch-manipulation"
+                onClick={() => scrollToContact(true)}
+              >
                 Hire Me
               </Button>
             </div>
