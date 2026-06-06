@@ -8,14 +8,16 @@ import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
-import { blogPosts } from "@/data/blog";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
+import { getAllPosts } from "@/lib/blog";
 
 export const dynamic = "force-static";
 
 export default function HomePage() {
+  const blogPosts = getAllPosts().slice(0, 3);
+
   return (
     <>
       <Navbar />

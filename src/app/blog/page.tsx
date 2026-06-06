@@ -1,9 +1,12 @@
+import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { RevealItem, RevealOnScroll, RevealStagger } from "@/components/ui/RevealOnScroll";
-import { blogPosts } from "@/data/blog";
+import {
+  RevealItem,
+  RevealOnScroll,
+  RevealStagger,
+} from "@/components/ui/RevealOnScroll";
+import { getAllPosts } from "@/lib/blog";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,18 +15,12 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Articles about React, Next.js, system design, and developer tooling by Zain Raza.",
+    "Articles about AI context engineering, token optimization, context window, React, Next.js, system design, and developer tooling by Zain Raza.",
 };
 
-function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <>
       <Navbar />
@@ -34,33 +31,15 @@ export default function BlogPage() {
             Thoughts & Articles
           </h1>
           <p className="mb-12 max-w-2xl text-text-secondary">
-            Coming soon — I write about React, Next.js, system design, and developer
-            tooling
+            Notes on AI context engineering, token optimization, context window, React,
+            Next.js, system design, and developer tooling.
           </p>
         </RevealOnScroll>
 
         <RevealStagger className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
-            <RevealItem key={post.id}>
-              <Card className="relative flex h-full flex-col overflow-hidden">
-                <div className="absolute inset-0 z-10 flex items-center justify-center bg-bg-primary/70">
-                  <Badge variant="warning">Coming Soon</Badge>
-                </div>
-                <div className="relative z-0 flex flex-1 flex-col opacity-60">
-                  <div className="mb-3 flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <Badge key={tag} variant="default">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <h2 className="mb-2 text-base text-text-primary">{post.title}</h2>
-                  <p className="mb-3 font-mono text-xs text-text-muted">
-                    {formatDate(post.date)}
-                  </p>
-                  <p className="flex-1 text-sm text-text-secondary">{post.excerpt}</p>
-                </div>
-              </Card>
+          {posts.map((post) => (
+            <RevealItem key={post.slug}>
+              <BlogPostCard post={post} />
             </RevealItem>
           ))}
         </RevealStagger>
