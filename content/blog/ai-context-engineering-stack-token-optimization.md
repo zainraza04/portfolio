@@ -9,7 +9,7 @@ tags:
     "Prompt-Engineering",
     "Developer-Tools",
   ]
-date: "2026-06-05"
+date: "2026-06-09"
 slug: "ai-context-engineering-stack-token-optimization"
 ---
 

@@ -5,6 +5,7 @@ import { cn, scrollToSection } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navLinks = [
@@ -22,8 +23,22 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const prefersReducedMotion = useReducedMotion();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    if (!isHome || !window.location.hash) return;
+
+    const id = window.location.hash.slice(1);
+    const timer = window.setTimeout(() => scrollToSection(id), 150);
+
+    return () => window.clearTimeout(timer);
+  }, [isHome, pathname]);
+
+  useEffect(() => {
+    if (!isHome) return;
+
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -42,7 +57,7 @@ export function Navbar() {
     });
 
     return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -59,13 +74,19 @@ export function Navbar() {
     const id = href.replace("#", "");
     closeMobileMenu();
 
-    const doScroll = () => scrollToSection(id);
+    const doNavigate = () => {
+      if (isHome) {
+        scrollToSection(id);
+      } else {
+        router.push(`/#${id}`);
+      }
+    };
 
     if (fromMobile) {
       // Defer until menu closes — fixes iOS/mobile tap + scroll conflicts
-      window.setTimeout(doScroll, 200);
+      window.setTimeout(doNavigate, 200);
     } else {
-      doScroll();
+      doNavigate();
     }
   };
 
@@ -88,15 +109,30 @@ export function Navbar() {
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
+            const linkClassName = cn(
+              "nav-link font-mono text-sm text-text-secondary transition-colors hover:text-text-primary",
+              isHome && activeSection === id && "nav-link-active text-accent-secondary",
+            );
+
+            if (!isHome) {
+              return (
+                <Link
+                  key={link.href}
+                  href={`/${link.href}`}
+                  className={linkClassName}
+                  onClick={closeMobileMenu}
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+
             return (
               <button
                 key={link.href}
                 type="button"
                 onClick={() => handleNavClick(link.href)}
-                className={cn(
-                  "nav-link font-mono text-sm text-text-secondary transition-colors hover:text-text-primary",
-                  activeSection === id && "nav-link-active text-accent-secondary",
-                )}
+                className={linkClassName}
               >
                 {link.label}
               </button>

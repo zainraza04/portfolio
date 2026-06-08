@@ -2,7 +2,7 @@
 title: "The Caveman Protocol: A Simple Rule That Slashes AI Token Usage"
 excerpt: "Reduce token costs, improve cache hits, and prevent context bloat by forcing AI agents to load only the information they actually need."
 tags: ["Claude", "AI-Engineering", "Prompt-Engineering", "Developer-Tools"]
-date: "2026-06-05"
+date: "2026-06-07"
 slug: "caveman-protocol-token-reduction"
 ---
 
@@ -24,11 +24,11 @@ Only proven necessity.
 
 Context grows vertically over time:
 
-* Previous messages
-* Tool outputs
-* Logs
-* File contents
-* Generated plans
+- Previous messages
+- Tool outputs
+- Logs
+- File contents
+- Generated plans
 
 As context grows, useful information becomes a smaller percentage of the total prompt.
 
@@ -47,10 +47,10 @@ Imagine a filing clerk asked to retrieve a single invoice.
 
 The clerk prints:
 
-* Every invoice
-* Customer records
-* Shipping history
-* Internal emails
+- Every invoice
+- Customer records
+- Shipping history
+- Internal emails
 
 The requested invoice exists somewhere in the stack, but finding it becomes harder.
 
@@ -106,10 +106,10 @@ The Caveman Protocol saves money on every interaction.
 
 Smaller contexts lead to:
 
-* Lower API costs
-* Faster responses
-* Better cache hit rates
-* Longer effective context windows
+- Lower API costs
+- Faster responses
+- Better cache hit rates
+- Longer effective context windows
 
 The best AI systems are not the ones with the largest context windows.
 
