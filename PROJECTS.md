@@ -273,3 +273,63 @@ The result is a maintainable, TypeScript-first codebase that balances SEO, perfo
 - Thin server `src/lib/*` fetch layer for public SSR plus a single Axios client for authenticated CSR, reducing duplicate API logic
 - Scoped global state—Redux limited to dashboard-heavy domains; React Context for favorites, browsing history, and notifications
 - Production-oriented Next config (`output: "standalone"`) and dynamic chart imports to keep initial bundles lean on admin analytics pages
+
+# Project Name
+
+Xply-Tech
+
+# One-Line Summary
+
+SEO-first IT agency website: Figma-faithful marketing pages, nine service detail routes, careers funnel, and a production contact pipeline with analytics and bot protection.
+
+# Portfolio Description
+
+Xply-Tech is a production marketing site for an IT and software development company, built as a single Next.js application with fully server-rendered pages for crawlability and fast first paint. I led frontend implementation from Figma through launch—homepage, about, nine expertise landing pages, careers (including opportunities and profile submission), and contact—while keeping copy, metadata, and structured data centralized in a typed data/ layer instead of hardcoded components.
+
+The public experience is Server Component–first: marketing sections ship as HTML with small client islands only where needed—contact form submission, scroll-spy service tabs, mobile navigation, Framer Motion reveals, and CTA/outbound link tracking. Service pages use generateStaticParams and modular section composition (hero, toolkit grids, industries, consulting approach, feature tabs) so each of nine offerings scales from the same architecture. The contact funnel posts to a Next.js Route Handler with Cloudflare Turnstile verification, honeypot spam filtering, field validation, and Nodemailer SMTP delivery, then fires a generate_lead Google Analytics event on success.
+
+Deployed on Vercel with environment-driven integrations (GA4, Turnstile, SMTP), the result is a maintainable, TypeScript-strict codebase that balances SEO, Core Web Vitals, accessibility, and lead capture without unnecessary client-side JavaScript.
+
+# Key Features
+
+- Server-rendered home, about, contact, careers, and nine /services/[slug] pages with per-route generateMetadata, canonical URLs, Open Graph/Twitter cards, and page-specific OG images
+- JSON-LD structured data via reusable helpers: Organization, WebSite, Service, ItemList, BreadcrumbList, and LocalBusiness schemas injected per page
+- Dynamic sitemap.ts and robots.ts covering core routes and all implemented service slugs
+- Google Analytics 4 via @next/third-parties/google, loaded in production only with custom events for CTA clicks, outbound links, and contact form leads (generate_lead)
+- Cloudflare Turnstile captcha on the contact form with server-side token verification, plus honeypot and strict payload validation on /api/contact
+- SMTP lead delivery through Nodemailer with HTML/text templates and replyTo set to the submitter
+- Data-driven content architecture: all copy and service page configs live in src/data/* with shared cards (ServiceCard, TechnologyIconCard) and mandatory SectionHeader patterns
+- Careers experience with hiring approach, work environment, open opportunities, and submit-profile flow
+- Interactive service detail UX: scroll-spy feature tabs, toolkit/industry grids, and staggered Framer Motion animations with useReducedMotion support
+- Responsive layout system: mobile-first grids, sticky header with expertise dropdown, accessible skip link, semantic landmarks, and next/image throughout
+- Brand design system mapped from Figma to CSS tokens (brand-*), mesh gradients, gradient text/borders, Manrope + Montserrat via next/font/google
+
+# Technologies Used
+
+**Frontend:** Next.js 16 (App Router), React 19, TypeScript (strict), Next.js Image, Lucide React
+
+**Styling:** Tailwind CSS v4, shadcn/ui primitives, custom brand-* design tokens in globals.css
+
+**Animations:** Framer Motion (centralized variants in lib/animations.ts; FadeIn, StaggerContainer client wrappers)
+
+**SEO:** Next.js Metadata API, lib/schema.ts JSON-LD builders, sitemap.ts, robots.ts, per-page OG assets
+
+**Analytics:** Google Analytics 4 (@next/third-parties/google), AnalyticsLink wrapper for CTA/outbound event tracking, trackLead on successful form submit
+
+**Forms & Security:** Cloudflare Turnstile (@marsidev/react-turnstile), server verification in lib/turnstile.ts, honeypot field, field-length and option whitelist validation
+
+**Backend / APIs:** Next.js Route Handlers (/api/contact), Nodemailer (SMTP), environment-based config for production secrets
+
+**Deployment:** Vercel (Next.js-native hosting, env vars for GA, Turnstile, and SMTP)
+
+**Other:** @base-ui/react dropdowns, modular section/card component library, Figma-to-web responsive implementation patterns
+
+# Engineering Highlights
+
+- Server-first rendering strategy: pages and marketing sections stay Server Components; "use client" limited to forms, nav, tabs, animations, and analytics links—content remains in the initial HTML for SEO
+- Consistent SEO system: metadata template in root layout, generateMetadata on dynamic service routes, JSON-LD injected in page JSX (not layout), and sitemap aligned to getImplementedServiceSlugs()
+- Thin integration layers: lib/analytics.ts for GA events, lib/turnstile.ts for captcha verification, lib/mail.ts for SMTP—Route Handler orchestrates validation → captcha → email
+- Production-safe analytics: GA loads only when NODE_ENV === "production" and NEXT_PUBLIC_GA_MEASUREMENT_ID is set; no tracking noise in development
+- Content scalability: nine service pages share one [slug] template and typed ServicePageData; adding a service is data + static params, not a new page shell
+- Performance-oriented UX: next/font with display: swap, priority images above the fold, animation wrappers isolated to keep parent sections as server components, reduced-motion fallbacks
+- Accessible, semantic HTML: single <h1> per page, SectionHeader for section headings, aria-label on sections, skip-to-content link, and form states with role="alert" / role="status"

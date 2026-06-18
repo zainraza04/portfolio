@@ -136,6 +136,27 @@ export const projects: Project[] = [
     ],
     type: "Full Stack",
   },
+  {
+    id: "xply-tech",
+    title: "Xply-Tech",
+    description:
+      "A production marketing site for an IT and software development company, built as a single Next.js application with fully server-rendered pages for crawlability and fast first paint. I led frontend implementation from Figma through launch—homepage, about, nine expertise landing pages, careers, and contact—while keeping copy, metadata, and structured data centralized in a typed data layer instead of hardcoded components.",
+    features: [
+      "Server-rendered marketing and nine /services/[slug] pages with per-route metadata, JSON-LD, and dynamic sitemap",
+      "Contact funnel with Cloudflare Turnstile verification, honeypot filtering, and Nodemailer SMTP delivery",
+      "Google Analytics 4 with CTA, outbound link, and generate_lead event tracking in production only",
+      "Data-driven service page architecture with scroll-spy tabs, Framer Motion reveals, and Figma-mapped brand tokens",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Nodemailer",
+      "GA4",
+    ],
+    type: "Full Stack",
+  },
 ];
 
 export const projectFilters: Array<ProjectType | "All"> = [
