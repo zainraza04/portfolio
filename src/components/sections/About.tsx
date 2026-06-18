@@ -1,6 +1,7 @@
 import { AboutTerminal } from "@/components/sections/AboutTerminal";
 import { Badge } from "@/components/ui/Badge";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { SectionAccentBar } from "@/components/ui/SectionAccentBar";
 
 const stats = [
   "4+ Years Experience",
@@ -14,6 +15,7 @@ export function About() {
     <section id="about" className="px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
+          <SectionAccentBar />
           <p className="mb-3 font-mono text-sm text-accent-primary">{"// about_me"}</p>
           <h2 className="mb-12 text-3xl text-text-primary sm:text-4xl">
             Crafting digital experiences with clean code

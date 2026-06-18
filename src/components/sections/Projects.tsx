@@ -1,5 +1,6 @@
 import { ProjectsFilter } from "@/components/sections/ProjectsFilter";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { SectionAccentBar } from "@/components/ui/SectionAccentBar";
 import type { Project } from "@/data/projects";
 
 interface ProjectsProps {
@@ -11,6 +12,7 @@ export function Projects({ projects }: ProjectsProps) {
     <section id="projects" className="px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
+          <SectionAccentBar />
           <p className="mb-3 font-mono text-sm text-accent-primary">
             {"// featured_projects"}
           </p>

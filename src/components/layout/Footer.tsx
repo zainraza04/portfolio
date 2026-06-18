@@ -13,7 +13,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-border bg-bg-primary py-12">
+    <footer className="footer-grid relative border-t border-border bg-bg-primary py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 text-center sm:px-6 lg:px-8">
         <p className="font-mono text-sm text-text-secondary">
           Built with Next.js & ♥ — {year}

@@ -2,7 +2,14 @@
 
 import { Button } from "@/components/ui/Button";
 import { cn, scrollToSection } from "@/lib/utils";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -22,10 +29,15 @@ const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === "/";
+
+  // Scroll progress bar
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
 
   useEffect(() => {
     if (!isHome || !window.location.hash) return;
@@ -59,6 +71,18 @@ export function Navbar() {
     return () => observers.forEach((observer) => observer.disconnect());
   }, [isHome]);
 
+  // Track scroll past hero for stronger blur
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroEl = document.getElementById("hero");
+      const heroHeight = heroEl?.offsetHeight ?? window.innerHeight;
+      setScrolledPastHero(window.scrollY > heroHeight * 0.7);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     if (!mobileOpen) return;
     const previousOverflow = document.body.style.overflow;
@@ -83,7 +107,6 @@ export function Navbar() {
     };
 
     if (fromMobile) {
-      // Defer until menu closes — fixes iOS/mobile tap + scroll conflicts
       window.setTimeout(doNavigate, 200);
     } else {
       doNavigate();
@@ -95,7 +118,22 @@ export function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-bg-primary/80 backdrop-blur-md">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        scrolledPastHero
+          ? "border-b border-accent-primary/20 bg-bg-primary/95 backdrop-blur-xl"
+          : "border-b border-border/50 bg-bg-primary/80 backdrop-blur-md",
+      )}
+    >
+      {/* Scroll progress bar */}
+      {!prefersReducedMotion && (
+        <motion.div
+          className="absolute inset-x-0 top-0 h-[2px] bg-linear-to-r from-accent-primary to-accent-secondary"
+          style={{ scaleX, transformOrigin: "left", zIndex: 51 }}
+        />
+      )}
+
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -106,46 +144,64 @@ export function Navbar() {
           <span className="cursor-blink text-terminal-green">_</span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => {
-            const id = link.href.replace("#", "");
-            const linkClassName = cn(
-              "nav-link font-mono text-sm text-text-secondary transition-colors hover:text-text-primary",
-              isHome && activeSection === id && "nav-link-active text-accent-secondary",
-            );
+        <LayoutGroup>
+          <div className="hidden items-center gap-8 md:flex">
+            {navLinks.map((link) => {
+              const id = link.href.replace("#", "");
+              const isActive = isHome && activeSection === id;
+              const linkClassName = cn(
+                "nav-link relative font-mono text-sm transition-colors",
+                isActive
+                  ? "text-accent-secondary"
+                  : "text-text-secondary hover:text-text-primary",
+              );
 
-            if (!isHome) {
+              const pill = isActive && !prefersReducedMotion ? (
+                <motion.span
+                  layoutId="nav-active-pill"
+                  className="absolute -bottom-1.5 left-0 right-0 h-[3px] rounded-full bg-accent-primary/80"
+                  style={{
+                    boxShadow: "0 0 8px var(--accent-secondary), 0 0 16px var(--accent-primary)",
+                  }}
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              ) : null;
+
+              if (!isHome) {
+                return (
+                  <Link
+                    key={link.href}
+                    href={`/${link.href}`}
+                    className={linkClassName}
+                    onClick={closeMobileMenu}
+                  >
+                    {link.label}
+                    {pill}
+                  </Link>
+                );
+              }
+
               return (
-                <Link
+                <button
                   key={link.href}
-                  href={`/${link.href}`}
+                  type="button"
+                  onClick={() => handleNavClick(link.href)}
                   className={linkClassName}
-                  onClick={closeMobileMenu}
                 >
                   {link.label}
-                </Link>
+                  {pill}
+                </button>
               );
-            }
-
-            return (
-              <button
-                key={link.href}
-                type="button"
-                onClick={() => handleNavClick(link.href)}
-                className={linkClassName}
-              >
-                {link.label}
-              </button>
-            );
-          })}
-          <Button
-            variant="outline"
-            className="gradient-border px-4 py-2 text-xs"
-            onClick={() => scrollToContact()}
-          >
-            Hire Me
-          </Button>
-        </div>
+            })}
+            <Button
+              variant="outline"
+              className="gradient-border px-4 py-2 text-xs"
+              onClick={() => scrollToContact()}
+            >
+              Hire Me
+            </Button>
+          </div>
+        </LayoutGroup>
 
         <button
           type="button"
@@ -166,7 +222,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="relative z-[60] border-t border-border bg-bg-secondary md:hidden"
+            className="relative z-60 border-t border-border bg-bg-secondary md:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {navLinks.map((link) => {

@@ -4,10 +4,8 @@ import type { Project, ProjectType } from "@/data/projects";
 import { projectFilters } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-motion";
-import { FileText, Lock } from "lucide-react";
 import { useState } from "react";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import { ProjectCard } from "@/components/sections/ProjectCard";
 
 interface ProjectsFilterProps {
   projects: Project[];
@@ -57,53 +55,7 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
                 exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className="group relative flex h-full flex-col overflow-hidden">
-                  <div className="relative z-10 flex flex-1 flex-col">
-                    <div className="mb-4 flex flex-wrap items-center gap-2">
-                      <Badge variant="accent">{project.type}</Badge>
-                      {project.techStack.slice(0, 4).map((tech) => (
-                        <Badge key={tech} variant="default">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <h3 className="mb-3 text-lg text-text-primary">{project.title}</h3>
-                    <p className="mb-4 text-sm text-text-secondary">
-                      {project.description}
-                    </p>
-
-                    <ul className="mb-6 flex-1 space-y-2 text-sm text-text-secondary">
-                      {project.features.map((feature) => (
-                        <li key={feature} className="flex gap-2">
-                          <span className="text-accent-primary">▸</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="flex gap-3 border-t border-border pt-4">
-                      <button
-                        type="button"
-                        disabled
-                        title="Coming soon"
-                        className="flex items-center gap-2 font-mono text-xs text-text-muted"
-                      >
-                        <FileText className="h-4 w-4" />
-                        Case Study
-                      </button>
-                      <button
-                        type="button"
-                        disabled
-                        title="Private repository"
-                        className="flex items-center gap-2 font-mono text-xs text-text-muted"
-                      >
-                        <Lock className="h-4 w-4" />
-                        Private Repo
-                      </button>
-                    </div>
-                  </div>
-                </Card>
+                <ProjectCard project={project} />
               </motion.div>
             ))}
           </AnimatePresence>

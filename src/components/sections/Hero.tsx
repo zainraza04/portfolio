@@ -1,4 +1,5 @@
 import { HeroActions, HeroScrollIndicator } from "@/components/sections/HeroClient";
+import { HeroBackground } from "@/components/sections/HeroBackground";
 import { Badge } from "@/components/ui/Badge";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { TerminalText } from "@/components/ui/TerminalText";
@@ -37,6 +38,7 @@ export function Hero() {
         className="scanline-overlay absolute inset-0 opacity-40"
         aria-hidden="true"
       />
+      <HeroBackground />
 
       <RevealOnScroll className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-2 text-center">
         <Badge variant="success" className="mb-8 gap-2">

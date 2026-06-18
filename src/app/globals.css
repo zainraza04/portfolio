@@ -64,8 +64,8 @@ section[id] {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--accent-primary) 40%, transparent);
-  color: var(--text-primary);
+  background: #7c3aed;
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -74,16 +74,17 @@ section[id] {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #0f0f1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-primary);
+  background: linear-gradient(to bottom, #7c3aed, #a855f7);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-secondary);
+  background: linear-gradient(to bottom, #8b5cf6, #c084fc);
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
 }
 
 h1,
@@ -286,5 +287,183 @@ h6 {
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Beam animations ─── */
+
+@keyframes beam-across {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes beam-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* ─── Timeline ripple ─── */
+
+@keyframes timeline-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[timeline-ripple"] {
+    animation: none;
+  }
+}
+
+/* ─── Button shimmer ─── */
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  to {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+/* Primary & ghost buttons get a shimmer on hover */
+button.shimmer-btn,
+a.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+button.shimmer-btn::after,
+a.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+}
+
+button.shimmer-btn:hover::after,
+a.shimmer-btn:hover::after {
+  animation: shimmer 0.6s ease-in-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.shimmer-btn::after,
+  a.shimmer-btn::after {
+    display: none;
+  }
+}
+
+/* ─── Badge animated border ─── */
+
+@property --badge-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-badge-border {
+  to {
+    --badge-angle: 360deg;
+  }
+}
+
+.badge-beam {
+  background: conic-gradient(
+    from var(--badge-angle),
+    transparent 0%,
+    var(--accent-secondary) 15%,
+    var(--accent-primary) 30%,
+    transparent 45%
+  );
+  border-radius: inherit;
+}
+
+.group\/badge:hover .badge-beam {
+  animation: rotate-badge-border 2s linear infinite;
+  opacity: 1;
+}
+
+/* ─── CRT scanline overlay (terminal card) ─── */
+
+.scanline-crt {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(168, 85, 247, 0.04) 3px,
+    rgba(168, 85, 247, 0.04) 4px
+  );
+  pointer-events: none;
+}
+
+/* Moving sweep line */
+.scanline-crt::before {
+  content: "";
+  position: absolute;
+  inset-x: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(168, 85, 247, 0.035),
+    transparent
+  );
+  animation: crt-sweep 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes crt-sweep {
+  from {
+    top: -30%;
+  }
+  to {
+    top: 110%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline-crt::before {
+    animation: none;
+  }
+}
+
+/* ─── Footer grid lines ─── */
+
+.footer-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      rgba(124, 58, 237, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(124, 58, 237, 0.05) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
   pointer-events: none;
 }
