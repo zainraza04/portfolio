@@ -1,16 +1,9 @@
 import { HeroActions, HeroScrollIndicator } from "@/components/sections/HeroClient";
 import { Badge } from "@/components/ui/Badge";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
-import { TerminalText } from "@/components/ui/TerminalText";
+import { siteConfig } from "@/data/site";
 import { heroTechStack } from "@/data/skills";
 import type { IconType } from "react-icons";
-
-const roles = [
-  "Full Stack Engineer",
-  "React & Next.js Specialist",
-  "Backend Architect",
-  "Open Source Contributor",
-];
 
 function TechItem({ name, icon: Icon }: { name: string; icon: IconType }) {
   return (
@@ -39,25 +32,28 @@ export function Hero() {
       />
 
       <RevealOnScroll className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-2 text-center">
-        <Badge variant="success" className="mb-8 gap-2">
-          <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-success" />✦
-          Available for work
+        <Badge
+          variant="success"
+          className="mb-8 max-w-sm gap-2 whitespace-normal px-3 py-1.5 text-left leading-relaxed"
+        >
+          <span className="pulse-dot inline-block h-2 w-2 shrink-0 rounded-full bg-success" />
+          {siteConfig.availability}
         </Badge>
 
-        <h1 className="mb-6 text-4xl text-text-primary sm:text-5xl md:text-6xl lg:text-7xl">
-          Hi, I&apos;m <span className="gradient-text">Zain Raza</span>
-        </h1>
-
-        <p className="mb-4 font-mono text-lg text-accent-secondary sm:text-xl md:text-2xl">
+        <p className="mb-5 font-mono text-sm text-accent-secondary sm:text-base">
           <span className="text-accent-primary">{"> "}</span>
-          <TerminalText strings={roles} />
-          <span className="text-accent-primary">&quot;</span>
+          Zain Raza · Full-Stack Developer
         </p>
 
-        <p className="mb-10 max-w-2xl text-base text-text-secondary sm:text-lg">
-          I build scalable, production-grade web applications, from polished React
-          interfaces to robust NestJS backends, with a focus on clean architecture and
-          developer experience.
+        <h1 className="mb-6 max-w-4xl text-2xl text-text-primary sm:text-4xl">
+          Full-Stack Developer building scalable web products for{" "}
+          <span className="gradient-text">startups and businesses.</span>
+        </h1>
+
+        <p className="mb-10 max-w-3xl text-base text-text-secondary sm:text-lg">
+          I build production-ready applications using Next.js, React, NestJS, and
+          TypeScript — from SaaS platforms and customer-facing products to dashboards,
+          APIs, and internal tools.
         </p>
 
         <HeroActions />

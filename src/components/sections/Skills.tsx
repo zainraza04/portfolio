@@ -1,5 +1,9 @@
 import { Card } from "@/components/ui/Card";
-import { RevealItem, RevealOnScroll, RevealStagger } from "@/components/ui/RevealOnScroll";
+import {
+  RevealItem,
+  RevealOnScroll,
+  RevealStagger,
+} from "@/components/ui/RevealOnScroll";
 import type { SkillGroup } from "@/data/skills";
 import { cn } from "@/lib/utils";
 
@@ -12,9 +16,11 @@ export function Skills({ skillGroups }: SkillsProps) {
     <section id="skills" className="px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
-          <p className="mb-3 font-mono text-sm text-accent-primary">{"// tech_stack"}</p>
+          <p className="mb-3 font-mono text-sm text-accent-primary">
+            {"// technical_expertise"}
+          </p>
           <h2 className="mb-12 text-3xl text-text-primary sm:text-4xl">
-            Technologies I Work With
+            Technical Expertise
           </h2>
         </RevealOnScroll>
 
@@ -38,7 +44,10 @@ export function Skills({ skillGroups }: SkillsProps) {
                       <Icon className="h-4 w-4 shrink-0" />
                       <span>{name}</span>
                       {primary && (
-                        <span className="text-accent-primary" aria-label="Primary strength">
+                        <span
+                          className="text-accent-primary"
+                          aria-label="Primary strength"
+                        >
                           ★
                         </span>
                       )}

@@ -9,36 +9,30 @@ export function HeroActions() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <Button variant="primary" onClick={() => scrollToSection("projects")}>
-        View My Work
-      </Button>
-      <Button
-        variant="ghost"
-        onClick={() => {
-          const link = document.createElement("a");
-          link.href = "/cv.pdf";
-          link.download = "Zain-Raza-CV.pdf";
-          link.click();
-        }}
-      >
-        Download CV
-      </Button>
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <Button variant="primary" onClick={() => scrollToSection("work")}>
+          View My Work
+        </Button>
+        <Button variant="ghost" onClick={() => scrollToSection("contact")}>
+          Discuss a Project
+        </Button>
+      </div>
     </div>
   );
 }
 
 export function HeroScrollIndicator() {
-  const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToWork = () => {
+    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <button
       type="button"
-      onClick={scrollToAbout}
+      onClick={scrollToWork}
       className="scroll-indicator flex flex-col items-center gap-2 text-text-muted transition-colors hover:text-accent-secondary"
-      aria-label="Scroll to about section"
+      aria-label="Scroll to selected work"
     >
       <span className="font-mono text-xs uppercase tracking-widest">scroll</span>
       <ChevronDown className="h-5 w-5" />

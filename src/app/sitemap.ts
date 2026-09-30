@@ -1,8 +1,9 @@
 import { getAllPosts } from "@/lib/blog";
+import { siteConfig } from "@/data/site";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zainraza.dev";
+  const siteUrl = siteConfig.siteUrl;
   const posts = getAllPosts();
 
   return [

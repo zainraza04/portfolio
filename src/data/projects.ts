@@ -4,6 +4,7 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  role: string;
   features: string[];
   techStack: string[];
   type: ProjectType;
@@ -14,7 +15,8 @@ export const projects: Project[] = [
     id: "yupup-vendor-portal",
     title: "YupUp Business App",
     description:
-      "The vendor-facing dashboard for a commission-based service marketplace, where businesses manage orders, appointments, ad promotions, payments, and real-time customer messaging. I built the production React frontend with a Redux Toolkit architecture spanning 12+ feature slices, JWT auth with silent token refresh, and Socket.io presence tracking.",
+      "A vendor workspace for a service marketplace, helping businesses manage orders, appointments, promotions, payments, and customer conversations in one place.",
+    role: "Frontend Development · Product Delivery",
     features: [
       "Real-time analytics dashboard with revenue, sales, customer, and appointment metrics",
       "Stripe Connect onboarding and payment method management",
@@ -35,7 +37,8 @@ export const projects: Project[] = [
     id: "neblo-ai",
     title: "Neblo AI",
     description:
-      "A large-scale transportation management SPA connecting brokers and carriers with 45+ views spanning load management, a real-time load board, live GPS tracking, AI-powered dispatch, broadcast messaging, and Stripe billing. I built the entire frontend with 26 Redux Toolkit slices, custom WebSocket hooks, and Vite-optimized code splitting across a 430+ file codebase.",
+      "A transportation management platform connecting brokers and carriers through load management, live tracking, dispatch workflows, messaging, and billing.",
+    role: "Frontend Architecture · Product Development",
     features: [
       "Load board and marketplace with DAT integration and recent search persistence",
       "Live vehicle tracking on Mapbox GL maps with Supercluster geographic clustering",
@@ -56,7 +59,8 @@ export const projects: Project[] = [
     id: "dignifyx-admin-hub",
     title: "DignifyX Admin Hub",
     description:
-      "A multi-tenant administrative web application where platform operators and customer organizations manage users, teams, learning content, access, and reports. I led frontend development with RTK Query for REST data fetching, Zod-validated forms, reusable data tables, and role-based portals for owner, org admin, team leader, and adviser personas.",
+      "A multi-tenant administration platform where operators and customer organizations manage users, teams, learning content, access, and reporting.",
+    role: "Frontend Lead · UI Architecture",
     features: [
       "Role-based portals with protected nested routes for four distinct personas",
       "Bulk user and access workflows with outcome feedback modals",
@@ -77,7 +81,8 @@ export const projects: Project[] = [
     id: "ai-and-u",
     title: "AI & U (SellersGPT)",
     description:
-      "A consumer-facing directory helping sellers discover, compare, and review AI tools, software, and marketplaces. I led the Next.js 15 App Router implementation with locale-aware SSR, middleware-driven i18n across 50+ routes, token-based user dashboards, and a full admin workspace for content moderation and analytics.",
+      "A consumer product that helps sellers discover, compare, save, and review AI tools, software, and marketplaces across localized experiences.",
+    role: "Full-Stack Development · Frontend Architecture",
     features: [
       "Locale-aware product catalog with reviews, pricing, and alternatives",
       "Editorial hubs: Editor's Choice, Just Launched, Most Saved, and marketplace views",
@@ -98,28 +103,23 @@ export const projects: Project[] = [
     id: "podfolio",
     title: "Podfolio",
     description:
-      "A creator-focused Next.js application helping podcasters discover, curate, and showcase YouTube episodes on their own sites. I delivered authenticated dashboards, guided onboarding, membership-gated features, Stripe billing, and a customizable embed widget with live preview and theme configuration.",
+      "A creator platform that helps podcasters discover, curate, and showcase YouTube episodes on their own websites through customizable embeds.",
+    role: "Full-Stack Product Development",
     features: [
       "Multi-step onboarding with YouTube episode search and confidence filtering",
       "Membership tiers controlling video limits, AI-verified results, and widget embedding",
       "Widget builder with live preview, theme/layout/color controls, and embed snippets",
       "Stripe plan selection, checkout redirect, billing portal, and coupon redemption",
     ],
-    techStack: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Supabase",
-      "Stripe",
-      "Ant Design",
-    ],
+    techStack: ["Next.js", "React", "TypeScript", "Supabase", "Stripe", "Ant Design"],
     type: "Full Stack",
   },
   {
     id: "realfinder",
     title: "RealFinder",
     description:
-      "A production property marketplace as a single Next.js application serving SEO-first public discovery and three authenticated portals for brokers, owners, and admins. I led frontend implementation across server-rendered marketing pages and complex dashboard workflows including listing creation, verification, moderation, and map-aware broker discovery.",
+      "A multi-role property marketplace serving customers, brokers, owners, and administrators with property discovery, dashboards, and verification workflows.",
+    role: "Frontend Lead · Product Development",
     features: [
       "Server-rendered browse, property, housebook, and geo landing pages with structured data",
       "Role-separated broker, owner, and admin dashboards with edge JWT role gating",
@@ -140,7 +140,8 @@ export const projects: Project[] = [
     id: "xply-tech",
     title: "Xply-Tech",
     description:
-      "A production marketing site for an IT and software development company, built as a single Next.js application with fully server-rendered pages for crawlability and fast first paint. I led frontend implementation from Figma through launch—homepage, about, nine expertise landing pages, careers, and contact—while keeping copy, metadata, and structured data centralized in a typed data layer instead of hardcoded components.",
+      "A production marketing platform for a software company, designed to communicate its expertise, support hiring, and convert qualified service inquiries.",
+    role: "Frontend Development · Figma-to-Launch Delivery",
     features: [
       "Server-rendered marketing and nine /services/[slug] pages with per-route metadata, JSON-LD, and dynamic sitemap",
       "Contact funnel with Cloudflare Turnstile verification, honeypot filtering, and Nodemailer SMTP delivery",
@@ -163,5 +164,4 @@ export const projectFilters: Array<ProjectType | "All"> = [
   "All",
   "Frontend",
   "Full Stack",
-  "Backend",
 ];

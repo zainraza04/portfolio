@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { ClientShell } from "@/components/layout/ClientShell";
+import { siteConfig } from "@/data/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,16 +15,19 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zainraza.dev";
+const siteUrl = siteConfig.siteUrl;
+const title = "Zain Raza — Full-Stack Developer | Next.js, React & NestJS";
+const description =
+  "Full-Stack Developer building production-ready SaaS products, web applications, dashboards, and backend systems using Next.js, React, NestJS, and TypeScript.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Zain Raza — Full Stack Engineer",
+    default: title,
     template: "%s | Zain Raza",
   },
-  description:
-    "Full Stack Engineer specializing in React, Next.js, NestJS, and PostgreSQL. Building scalable web applications with clean code and modern architecture.",
+  description,
+  alternates: { canonical: "/" },
   keywords: [
     "Full Stack Developer",
     "React",
@@ -45,16 +49,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Zain Raza Portfolio",
-    title: "Zain Raza — Full Stack Engineer",
-    description:
-      "Full Stack Engineer specializing in React, Next.js, NestJS, and PostgreSQL.",
+    title,
+    description,
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zain Raza — Full Stack Engineer",
-    description:
-      "Full Stack Engineer specializing in React, Next.js, NestJS, and PostgreSQL.",
+    title,
+    description,
     images: ["/og-image.png"],
   },
   robots: {

@@ -1,6 +1,10 @@
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
-import { RevealItem, RevealOnScroll, RevealStagger } from "@/components/ui/RevealOnScroll";
+import {
+  RevealItem,
+  RevealOnScroll,
+  RevealStagger,
+} from "@/components/ui/RevealOnScroll";
 import type { ExperienceEntry } from "@/data/experience";
 
 interface ExperienceProps {
@@ -13,10 +17,10 @@ export function Experience({ experience }: ExperienceProps) {
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
           <p className="mb-3 font-mono text-sm text-accent-primary">
-            {"// work_experience"}
+            {"// professional_experience"}
           </p>
           <h2 className="mb-12 text-3xl text-text-primary sm:text-4xl">
-            Where I&apos;ve Made an Impact
+            Professional Experience
           </h2>
         </RevealOnScroll>
 
@@ -46,12 +50,16 @@ export function Experience({ experience }: ExperienceProps) {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-mono text-xs text-text-muted">{entry.duration}</p>
+                        <p className="font-mono text-xs text-text-muted">
+                          {entry.duration}
+                        </p>
                         <Badge variant="default" className="mt-2">
                           {entry.employmentType}
                         </Badge>
                       </div>
                     </div>
+
+                    <p className="mb-4 text-sm text-text-secondary">{entry.summary}</p>
 
                     <ul className="mb-5 space-y-2 text-sm text-text-secondary">
                       {entry.bullets.map((bullet) => (
