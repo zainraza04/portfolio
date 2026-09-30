@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, useReducedMotion } from "framer-motion";
@@ -55,7 +56,7 @@ export function ContactForm() {
       };
 
       if (result.mailto) {
-        const mailtoUrl = `mailto:hello@zainraza.dev?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
+        const mailtoUrl = `mailto:${siteConfig.email}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
         openMailto(mailtoUrl);
         setSubmitted(true);
         reset();
@@ -126,17 +127,30 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="subject" className="mb-2 block font-mono text-xs text-text-muted">
-          {"// subject"}
+        <label
+          htmlFor="subject"
+          className="mb-2 block font-mono text-xs text-text-muted"
+        >
+          {"// project or opportunity"}
         </label>
-        <input id="subject" type="text" className={inputClass} {...register("subject")} />
+        <input
+          id="subject"
+          type="text"
+          className={inputClass}
+          {...register("subject")}
+        />
         {errors.subject && (
-          <p className="mt-1 font-mono text-xs text-red-400">{errors.subject.message}</p>
+          <p className="mt-1 font-mono text-xs text-red-400">
+            {errors.subject.message}
+          </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-2 block font-mono text-xs text-text-muted">
+        <label
+          htmlFor="message"
+          className="mb-2 block font-mono text-xs text-text-muted"
+        >
           {"// message"}
         </label>
         <textarea
@@ -146,14 +160,21 @@ export function ContactForm() {
           {...register("message")}
         />
         {errors.message && (
-          <p className="mt-1 font-mono text-xs text-red-400">{errors.message.message}</p>
+          <p className="mt-1 font-mono text-xs text-red-400">
+            {errors.message.message}
+          </p>
         )}
       </div>
 
       {error && <p className="font-mono text-xs text-red-400">{error}</p>}
 
-      <Button type="submit" variant="primary" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Sending..." : "Send Message _"}
+      <Button
+        type="submit"
+        variant="primary"
+        className="w-full"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Sending..." : "Discuss a Project _"}
       </Button>
     </form>
   );

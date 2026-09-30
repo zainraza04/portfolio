@@ -4,6 +4,7 @@ export interface ExperienceEntry {
   company: string;
   duration: string;
   employmentType: string;
+  summary: string;
   bullets: string[];
   techStack: string[];
 }
@@ -15,20 +16,15 @@ export const experience: ExperienceEntry[] = [
     company: "CodeFulcrum",
     duration: "August 2025 – Present",
     employmentType: "Full-time",
+    summary:
+      "Delivering full-stack features for production client products across modern frontend and backend systems.",
     bullets: [
       "Build and ship full-stack features across React/Next.js frontends and NestJS backend services for production client products",
       "Design REST APIs with PostgreSQL, implementing modular NestJS architecture, validation, and JWT-based authentication",
       "Own end-to-end delivery from UI implementation through API integration, debugging, and deployment support",
       "Collaborate with cross-functional teams to translate requirements into scalable, maintainable full-stack solutions",
     ],
-    techStack: [
-      "React",
-      "Next.js",
-      "NestJS",
-      "TypeScript",
-      "PostgreSQL",
-      "Docker",
-    ],
+    techStack: ["React", "Next.js", "NestJS", "TypeScript", "PostgreSQL", "Docker"],
   },
   {
     id: "cloudpacer",
@@ -36,6 +32,8 @@ export const experience: ExperienceEntry[] = [
     company: "Cloudpacer",
     duration: "July 2023 – August 2025",
     employmentType: "Full-time",
+    summary:
+      "Built production web applications for clients across marketplaces, logistics, administration, and SaaS.",
     bullets: [
       "Delivered production frontends across multiple client applications — marketplaces, logistics platforms, admin portals, and SaaS products",
       "Built large-scale React and Next.js SPAs with Redux Toolkit, RTK Query, and custom WebSocket hooks for real-time features",
@@ -58,6 +56,8 @@ export const experience: ExperienceEntry[] = [
     company: "ILI.Digital",
     duration: "June 2022 – July 2023",
     employmentType: "Full-time",
+    summary:
+      "Developed customer-facing full-stack applications in cross-functional agile product teams.",
     bullets: [
       "Developed full-stack web applications using React and ASP.NET (.NET) within an agile delivery environment",
       "Built and consumed RESTful APIs, connecting React frontends to .NET backend services for client-facing features",

@@ -1,8 +1,8 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import pngToIco from "png-to-ico";
 import sharp from "sharp";
-import toIco from "to-ico";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, "..", "public");
@@ -105,7 +105,7 @@ async function main() {
   const icon16 = await renderSvg(iconSvg(16), 16);
   const icon180 = await renderSvg(iconSvg(180), 180);
   const ogImage = await renderSvg(ogSvg(), 1200, 630);
-  const faviconIco = await toIco([icon16, icon32]);
+  const faviconIco = await pngToIco([icon16, icon32]);
 
   // public/ — static assets & OG image
   writeFileSync(join(publicDir, "icon.png"), icon32);

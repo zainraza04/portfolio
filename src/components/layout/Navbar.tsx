@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/data/site";
 import { cn, scrollToSection } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -9,11 +9,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
+  { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Blog", href: "#blog" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -21,7 +20,7 @@ const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("work");
   const prefersReducedMotion = useReducedMotion();
   const pathname = usePathname();
   const router = useRouter();
@@ -90,10 +89,6 @@ export function Navbar() {
     }
   };
 
-  const scrollToContact = (fromMobile = false) => {
-    handleNavClick("#contact", fromMobile);
-  };
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-bg-primary/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -106,7 +101,7 @@ export function Navbar() {
           <span className="cursor-blink text-terminal-green">_</span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
             const linkClassName = cn(
@@ -138,18 +133,19 @@ export function Navbar() {
               </button>
             );
           })}
-          <Button
-            variant="outline"
-            className="gradient-border px-4 py-2 text-xs"
-            onClick={() => scrollToContact()}
+          <Link
+            href={siteConfig.resumePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gradient-border inline-flex items-center justify-center border border-border-accent bg-bg-secondary px-4 py-2 font-mono text-xs text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent-primary"
           >
-            Hire Me
-          </Button>
+            Resume
+          </Link>
         </div>
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center text-text-primary touch-manipulation md:hidden"
+          className="flex h-10 w-10 items-center justify-center text-text-primary touch-manipulation lg:hidden"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -166,7 +162,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="relative z-[60] border-t border-border bg-bg-secondary md:hidden"
+            className="relative z-[60] border-t border-border bg-bg-secondary lg:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {navLinks.map((link) => {
@@ -188,13 +184,15 @@ export function Navbar() {
                   </a>
                 );
               })}
-              <Button
-                variant="primary"
-                className="mt-2 w-full touch-manipulation"
-                onClick={() => scrollToContact(true)}
+              <Link
+                href={siteConfig.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMobileMenu}
+                className="mt-2 inline-flex w-full items-center justify-center border border-accent-primary bg-gradient-to-r from-accent-primary to-accent-secondary px-6 py-3 font-mono text-sm font-medium text-white touch-manipulation"
               >
-                Hire Me
-              </Button>
+                View Resume
+              </Link>
             </div>
           </motion.div>
         )}

@@ -4,9 +4,9 @@ import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 const stats = [
   "4+ Years Experience",
-  "15+ Projects Delivered",
-  "Full Stack",
-  "Remote Ready",
+  "Production Applications",
+  "Product-Minded",
+  "Frontend + Backend",
 ];
 
 export function About() {
@@ -16,7 +16,7 @@ export function About() {
         <RevealOnScroll>
           <p className="mb-3 font-mono text-sm text-accent-primary">{"// about_me"}</p>
           <h2 className="mb-12 text-3xl text-text-primary sm:text-4xl">
-            Crafting digital experiences with clean code
+            Engineering products from interface to infrastructure
           </h2>
         </RevealOnScroll>
 
@@ -24,28 +24,19 @@ export function About() {
           <RevealOnScroll delay={0.1}>
             <div className="space-y-5 text-text-secondary">
               <p>
-                I&apos;m a full-stack engineer with 4+ years of experience building
-                web applications that scale. My work spans the entire stack — from
-                crafting responsive React and Next.js frontends to designing robust
-                backend architectures with NestJS and Node.js.
+                I&apos;m a full-stack developer with 4+ years of experience building
+                production web applications. My background spans React and Next.js
+                interfaces, NestJS and Node.js services, data, authentication, and
+                third-party integrations.
               </p>
               <p>
-                I&apos;m deeply passionate about the React/Next.js and NestJS
-                ecosystems, and I thrive on solving complex problems with clean,
-                maintainable code. Whether it&apos;s optimizing database queries,
-                implementing real-time features, or polishing UI interactions, I
-                bring the same attention to detail to every layer of the stack.
+                I approach engineering with a product mindset: understand the user and
+                business need, choose practical architecture, and ship maintainable work
+                that fits the existing system.
               </p>
               <p>
-                Beyond client work, I contribute to open source and enjoy sharing
-                knowledge about system design, developer tooling, and modern web
-                architecture. I believe great software is built at the intersection
-                of solid engineering and thoughtful user experience.
-              </p>
-              <p>
-                Currently based in Lahore, Pakistan, I&apos;m open to remote
-                opportunities with teams that value quality, collaboration, and
-                continuous learning.
+                Based in Lahore, Pakistan, I work with freelance clients, product teams,
+                and international remote companies.
               </p>
             </div>
 

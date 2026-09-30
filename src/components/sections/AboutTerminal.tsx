@@ -3,12 +3,12 @@
 export function AboutTerminal() {
   const lines = [
     { prompt: "$", command: "whoami" },
-    { output: "> full-stack-engineer" },
+    { output: "> full-stack-developer / product-engineer" },
     { prompt: "$", command: "cat skills.txt" },
     { output: "> React, Next.js, NestJS, Node.js" },
     { output: "> PostgreSQL, Docker, TypeScript" },
     { prompt: "$", command: "echo $STATUS" },
-    { output: '> "Open to opportunities"' },
+    { output: '> "Available for remote opportunities"' },
   ];
 
   return (

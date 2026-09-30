@@ -4,7 +4,6 @@ import type { Project, ProjectType } from "@/data/projects";
 import { projectFilters } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-motion";
-import { FileText, Lock } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
@@ -61,11 +60,6 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
                   <div className="relative z-10 flex flex-1 flex-col">
                     <div className="mb-4 flex flex-wrap items-center gap-2">
                       <Badge variant="accent">{project.type}</Badge>
-                      {project.techStack.slice(0, 4).map((tech) => (
-                        <Badge key={tech} variant="default">
-                          {tech}
-                        </Badge>
-                      ))}
                     </div>
 
                     <h3 className="mb-3 text-lg text-text-primary">{project.title}</h3>
@@ -73,6 +67,16 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
                       {project.description}
                     </p>
 
+                    <div className="mb-5 border-l-2 border-accent-primary/40 pl-4">
+                      <p className="font-mono text-[0.7rem] uppercase tracking-wider text-text-muted">
+                        My Role
+                      </p>
+                      <p className="mt-1 text-sm text-text-primary">{project.role}</p>
+                    </div>
+
+                    <p className="mb-3 font-mono text-[0.7rem] uppercase tracking-wider text-text-muted">
+                      Highlights
+                    </p>
                     <ul className="mb-6 flex-1 space-y-2 text-sm text-text-secondary">
                       {project.features.map((feature) => (
                         <li key={feature} className="flex gap-2">
@@ -82,25 +86,17 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
                       ))}
                     </ul>
 
-                    <div className="flex gap-3 border-t border-border pt-4">
-                      <button
-                        type="button"
-                        disabled
-                        title="Coming soon"
-                        className="flex items-center gap-2 font-mono text-xs text-text-muted"
-                      >
-                        <FileText className="h-4 w-4" />
-                        Case Study
-                      </button>
-                      <button
-                        type="button"
-                        disabled
-                        title="Private repository"
-                        className="flex items-center gap-2 font-mono text-xs text-text-muted"
-                      >
-                        <Lock className="h-4 w-4" />
-                        Private Repo
-                      </button>
+                    <div className="border-t border-border pt-4">
+                      <p className="mb-3 font-mono text-[0.7rem] uppercase tracking-wider text-text-muted">
+                        Stack
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.techStack.map((tech) => (
+                          <Badge key={tech} variant="default">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </Card>
