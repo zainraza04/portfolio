@@ -30,7 +30,7 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
             type="button"
             onClick={() => setActiveFilter(filter)}
             className={cn(
-              "border px-4 py-2 font-mono text-sm transition-all duration-300",
+              "cursor-pointer border px-4 py-2 font-mono text-sm transition-all duration-300",
               activeFilter === filter
                 ? "border-accent-primary bg-accent-primary/10 text-accent-secondary shadow-[0_0_16px_color-mix(in_srgb,var(--accent-glow)_30%,transparent)]"
                 : "border-border bg-bg-tertiary text-text-secondary hover:border-border-accent hover:text-text-primary",

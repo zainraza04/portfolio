@@ -105,7 +105,7 @@ export function Navbar() {
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
             const linkClassName = cn(
-              "nav-link font-mono text-sm text-text-secondary transition-colors hover:text-text-primary",
+              "nav-link cursor-pointer font-mono text-sm text-text-secondary transition-colors hover:text-text-primary",
               isHome && activeSection === id && "nav-link-active text-accent-secondary",
             );
 
@@ -176,7 +176,7 @@ export function Navbar() {
                       handleNavClick(link.href, true);
                     }}
                     className={cn(
-                      "block py-3 font-mono text-sm text-text-secondary touch-manipulation active:text-accent-primary",
+                      "block cursor-pointer py-3 font-mono text-sm text-text-secondary touch-manipulation active:text-accent-primary",
                       activeSection === id && "text-accent-secondary",
                     )}
                   >
