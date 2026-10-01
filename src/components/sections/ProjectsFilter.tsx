@@ -7,6 +7,7 @@ import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-m
 import { useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import Link from "next/link";
 
 interface ProjectsFilterProps {
   projects: Project[];
@@ -97,6 +98,15 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
                           </Badge>
                         ))}
                       </div>
+
+                      {project.caseStudySlug && (
+                        <Link
+                          href={`/case-studies/${project.caseStudySlug}`}
+                          className="mt-4 inline-flex font-mono text-xs text-accent-secondary transition-colors hover:text-accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                        >
+                          View Case Study →
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </Card>
