@@ -8,6 +8,7 @@ export interface Project {
   features: string[];
   techStack: string[];
   type: ProjectType;
+  caseStudySlug?: string;
 }
 
 export const projects: Project[] = [
@@ -32,6 +33,7 @@ export const projects: Project[] = [
       "Stripe",
     ],
     type: "Frontend",
+    caseStudySlug: "yupup",
   },
   {
     id: "neblo-ai",
@@ -54,6 +56,7 @@ export const projects: Project[] = [
       "WebSockets",
     ],
     type: "Frontend",
+    caseStudySlug: "neblo-ai",
   },
   {
     id: "dignifyx-admin-hub",
@@ -76,6 +79,7 @@ export const projects: Project[] = [
       "React Hook Form",
     ],
     type: "Frontend",
+    caseStudySlug: "dignifyx",
   },
   {
     id: "ai-and-u",
@@ -135,6 +139,7 @@ export const projects: Project[] = [
       "Firebase Auth",
     ],
     type: "Full Stack",
+    caseStudySlug: "realfinder",
   },
   {
     id: "xply-tech",
