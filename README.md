@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zain Raza Portfolio
 
-## Getting Started
+Personal portfolio for [Zain Raza](https://github.com/zainraza04), a full-stack developer working with TypeScript, Next.js, React, and NestJS.
 
-First, run the development server:
+**Live site:** [zain-raza.vercel.app](https://zain-raza.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+
+This site presents selected case studies, professional experience, technical skills, services, and writing. It is built as a content-focused Next.js application with reusable data modules and dynamic routes for project and blog content.
+
+## Features
+
+- Responsive portfolio homepage with experience, projects, skills, services, testimonials, and contact sections
+- Dynamic case study pages backed by typed project data
+- Markdown-based technical blog with GitHub Flavored Markdown support
+- Contact API with SMTP delivery and escaped user-provided content
+- Page transitions and interface motion using Framer Motion
+- Generated sitemap, robots configuration, social metadata, and optimized assets
+- Form validation with React Hook Form and Zod
+
+## Technology
+
+- Next.js 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- React Hook Form and Zod
+- Gray Matter, React Markdown, and Remark GFM
+- Nodemailer
+- ESLint and Prettier
+
+## Project structure
+
+```text
+content/blog/          Markdown articles
+public/                Static assets and downloadable files
+src/app/               Pages, dynamic routes, metadata, and API handlers
+src/components/        Reusable interface and section components
+src/data/              Typed portfolio, experience, and case study content
+src/lib/               Blog, email, motion, and utility modules
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Use a recent Node.js LTS release.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+The main site works without SMTP configuration. To enable the contact form, create `.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-password
+SMTP_FROM=Portfolio <your-address@example.com>
+CONTACT_EMAIL=your-address@example.com
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`SMTP_FROM` and `CONTACT_EMAIL` are optional. When `CONTACT_EMAIL` is omitted, contact messages are sent to `SMTP_USER`.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev       # Start the development server
+npm run build     # Create a production build
+npm run start     # Run the production server
+npm run lint      # Run ESLint
+npm run format    # Format the codebase with Prettier
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The site is deployed on Vercel. Add the same environment variables to the deployment environment if contact form delivery is required.
