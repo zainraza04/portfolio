@@ -1,4 +1,4 @@
-import { AboutTerminal } from "@/components/sections/AboutTerminal";
+import { DeferredAboutTerminal } from "@/components/ui/DeferredIslands";
 import { Badge } from "@/components/ui/Badge";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
@@ -50,7 +50,7 @@ export function About() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.2}>
-            <AboutTerminal />
+            <DeferredAboutTerminal />
           </RevealOnScroll>
         </div>
       </div>

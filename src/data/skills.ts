@@ -76,11 +76,3 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
 ];
-
-export const heroTechStack = [
-  { name: "React", icon: SiReact },
-  { name: "Next.js", icon: SiNextdotjs },
-  { name: "TypeScript", icon: SiTypescript },
-  { name: "NestJS", icon: SiNestjs },
-  { name: "PostgreSQL", icon: SiPostgresql },
-];

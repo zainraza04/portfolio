@@ -1,12 +1,12 @@
 "use client";
 
 import { useMousePosition } from "@/hooks/useMousePosition";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/utils";
-import { useReducedMotion } from "framer-motion";
 
 export function CursorGlow() {
   const { x, y } = useMousePosition();
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   if (prefersReducedMotion) return null;
 

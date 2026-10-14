@@ -1,4 +1,4 @@
-import { ProjectsFilter } from "@/components/sections/ProjectsFilter";
+import { DeferredProjectsFilter } from "@/components/ui/DeferredIslands";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import type { Project } from "@/data/projects";
 
@@ -21,7 +21,7 @@ export function Projects({ projects }: ProjectsProps) {
           </p>
         </RevealOnScroll>
 
-        <ProjectsFilter projects={projects} />
+        <DeferredProjectsFilter projects={projects} />
       </div>
     </section>
   );

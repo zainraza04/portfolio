@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/sections/ContactForm";
+import { DeferredContactForm } from "@/components/ui/DeferredIslands";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { socialLinks as socialUrls } from "@/data/social";
 import { siteConfig } from "@/data/site";
@@ -103,7 +103,7 @@ export function Contact() {
               <div className="mb-6 border-b border-border pb-4 font-mono text-xs text-text-muted">
                 discuss.project — terminal input
               </div>
-              <ContactForm />
+              <DeferredContactForm />
             </div>
           </RevealOnScroll>
         </div>

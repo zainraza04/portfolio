@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -28,7 +27,6 @@ function openMailto(url: string) {
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const prefersReducedMotion = useReducedMotion();
 
   const {
     register,
@@ -81,11 +79,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <motion.div
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="border border-success/30 bg-bg-tertiary p-6 font-mono text-sm"
-      >
+      <div className="border border-success/30 bg-bg-tertiary p-6 font-mono text-sm">
         <p className="text-success">
           <span className="text-accent-secondary">$</span> message sent successfully
         </p>
@@ -100,7 +94,7 @@ export function ContactForm() {
         >
           Send another message
         </button>
-      </motion.div>
+      </div>
     );
   }
 

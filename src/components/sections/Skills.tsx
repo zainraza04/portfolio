@@ -4,14 +4,10 @@ import {
   RevealOnScroll,
   RevealStagger,
 } from "@/components/ui/RevealOnScroll";
-import type { SkillGroup } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import { cn } from "@/lib/utils";
 
-interface SkillsProps {
-  skillGroups: SkillGroup[];
-}
-
-export function Skills({ skillGroups }: SkillsProps) {
+export function Skills() {
   return (
     <section id="skills" className="px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">

@@ -1,28 +1,15 @@
-import { HeroActions, HeroScrollIndicator } from "@/components/sections/HeroClient";
+import { HeroTechStack } from "@/components/sections/HeroTechStack";
 import { Badge } from "@/components/ui/Badge";
-import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { siteConfig } from "@/data/site";
-import { heroTechStack } from "@/data/skills";
-import type { IconType } from "react-icons";
 
-function TechItem({ name, icon: Icon }: { name: string; icon: IconType }) {
-  return (
-    <div className="flex w-[4.5rem] flex-col items-center gap-1.5 transition-transform duration-300 hover:-translate-y-1 sm:w-auto sm:gap-2">
-      <Icon
-        className="h-8 w-8 text-text-secondary transition-colors hover:text-accent-secondary sm:h-9 sm:w-9"
-        aria-hidden="true"
-      />
-      <span className="font-mono text-[0.65rem] text-text-muted sm:text-xs">
-        {name}
-      </span>
-    </div>
-  );
-}
+const ctaBase =
+  "inline-flex cursor-pointer items-center justify-center gap-2 px-6 py-3 font-mono text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary";
+const ctaPrimary =
+  "border border-accent-primary bg-gradient-to-r from-accent-primary to-accent-secondary text-white hover:scale-[1.02] hover:shadow-[0_0_24px_color-mix(in_srgb,var(--accent-glow)_45%,transparent)]";
+const ctaGhost =
+  "border border-border bg-transparent text-text-primary hover:scale-[1.02] hover:border-accent-primary hover:text-accent-secondary hover:shadow-[0_0_16px_color-mix(in_srgb,var(--accent-glow)_30%,transparent)]";
 
 export function Hero() {
-  const topRow = heroTechStack.slice(0, 3);
-  const bottomRow = heroTechStack.slice(3);
-
   return (
     <section
       id="hero"
@@ -34,7 +21,7 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <RevealOnScroll className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-2 text-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-2 text-center">
         <Badge
           variant="success"
           className="mb-8 max-w-sm gap-2 whitespace-normal px-3 py-1.5 text-left leading-relaxed"
@@ -48,7 +35,7 @@ export function Hero() {
           Zain Raza · Full-Stack Developer
         </p>
 
-        <h1 className="mb-6 max-w-4xl text-2xl text-text-primary sm:text-4xl">
+        <h1 className="hero-lcp mb-6 max-w-4xl text-2xl text-text-primary sm:text-4xl">
           Full-Stack Developer building scalable web products for{" "}
           <span className="gradient-text">startups and businesses.</span>
         </h1>
@@ -59,26 +46,32 @@ export function Hero() {
           APIs, and internal tools.
         </p>
 
-        <HeroActions />
-
-        {/* Mobile: 3 + 2 rows · Desktop: single row of 5 */}
-        <div className="mt-8 flex flex-col items-center gap-3 md:mt-10 md:flex-row md:justify-center md:gap-8">
-          <div className="flex justify-center gap-5 md:contents">
-            {topRow.map((tech) => (
-              <TechItem key={tech.name} {...tech} />
-            ))}
-          </div>
-          <div className="flex justify-center gap-8 md:contents">
-            {bottomRow.map((tech) => (
-              <TechItem key={tech.name} {...tech} />
-            ))}
-          </div>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a href="#work" className={`${ctaBase} ${ctaPrimary}`}>
+            View My Work
+          </a>
+          <a href="#contact" className={`${ctaBase} ${ctaGhost}`}>
+            Discuss a Project
+          </a>
         </div>
+
+        <HeroTechStack />
 
         <div className="mt-5 md:mt-10">
-          <HeroScrollIndicator />
+          <a
+            href="#work"
+            className="scroll-indicator flex flex-col items-center gap-2 text-text-muted transition-colors hover:text-accent-secondary"
+            aria-label="Scroll to selected work"
+          >
+            <span className="font-mono text-xs uppercase tracking-widest">
+              scroll
+            </span>
+            <span className="text-lg leading-none" aria-hidden="true">
+              ↓
+            </span>
+          </a>
         </div>
-      </RevealOnScroll>
+      </div>
     </section>
   );
 }

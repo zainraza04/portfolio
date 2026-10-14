@@ -1,9 +1,5 @@
-"use client";
-
-import { defaultTransition, fadeUpVariants } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
-import { type ReactNode } from "react";
+import { type CSSProperties, type ReactNode } from "react";
 
 interface RevealOnScrollProps {
   children: ReactNode;
@@ -16,23 +12,13 @@ export function RevealOnScroll({
   className,
   delay = 0,
 }: RevealOnScrollProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <motion.div
-      className={cn(className)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0, margin: "0px 0px -40px 0px" }}
-      variants={fadeUpVariants}
-      transition={{ ...defaultTransition, delay }}
+    <div
+      className={cn("reveal-on-scroll", className)}
+      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -42,26 +28,7 @@ interface RevealStaggerProps {
 }
 
 export function RevealStagger({ children, className }: RevealStaggerProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  return (
-    <motion.div
-      className={cn(className)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0, margin: "0px 0px -40px 0px" }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.1 } },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={cn("reveal-stagger", className)}>{children}</div>;
 }
 
 export function RevealItem({
@@ -71,15 +38,5 @@ export function RevealItem({
   children: ReactNode;
   className?: string;
 }) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  return (
-    <motion.div className={className} variants={fadeUpVariants} transition={defaultTransition}>
-      {children}
-    </motion.div>
-  );
+  return <div className={cn("reveal-item", className)}>{children}</div>;
 }
