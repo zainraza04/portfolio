@@ -56,7 +56,10 @@ export function Contact() {
               <ul className="space-y-4">
                 {contactInfo.map(({ icon: Icon, label, value }) => (
                   <li key={label} className="flex items-center gap-3">
-                    <Icon className="h-5 w-5 shrink-0 text-accent-primary" />
+                    <Icon
+                      className="h-5 w-5 shrink-0 text-accent-primary"
+                      aria-hidden="true"
+                    />
                     <div>
                       <p className="font-mono text-xs text-text-muted">{label}</p>
                       {label === "Email" ? (
@@ -88,7 +91,7 @@ export function Contact() {
                       "hover:border-accent-primary hover:text-accent-secondary hover:shadow-[0_0_16px_color-mix(in_srgb,var(--accent-glow)_35%,transparent)]",
                     )}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </Link>
                 ))}
               </div>

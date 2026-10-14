@@ -33,7 +33,7 @@ export function Footer() {
                 "hover:border-accent-primary hover:text-accent-secondary hover:shadow-[0_0_16px_color-mix(in_srgb,var(--accent-glow)_35%,transparent)]",
               )}
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-5 w-5" aria-hidden="true" />
             </Link>
           ))}
         </div>

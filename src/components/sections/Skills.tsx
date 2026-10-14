@@ -41,7 +41,7 @@ export function Skills({ skillGroups }: SkillsProps) {
                         primary && "border-accent-primary/30 text-text-primary",
                       )}
                     >
-                      <Icon className="h-4 w-4 shrink-0" />
+                      <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                       <span>{name}</span>
                       {primary && (
                         <span

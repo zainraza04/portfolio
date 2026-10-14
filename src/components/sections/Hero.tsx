@@ -8,7 +8,10 @@ import type { IconType } from "react-icons";
 function TechItem({ name, icon: Icon }: { name: string; icon: IconType }) {
   return (
     <div className="flex w-[4.5rem] flex-col items-center gap-1.5 transition-transform duration-300 hover:-translate-y-1 sm:w-auto sm:gap-2">
-      <Icon className="h-8 w-8 text-text-secondary transition-colors hover:text-accent-secondary sm:h-9 sm:w-9" />
+      <Icon
+        className="h-8 w-8 text-text-secondary transition-colors hover:text-accent-secondary sm:h-9 sm:w-9"
+        aria-hidden="true"
+      />
       <span className="font-mono text-[0.65rem] text-text-muted sm:text-xs">
         {name}
       </span>
