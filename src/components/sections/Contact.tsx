@@ -42,14 +42,14 @@ export function Contact() {
 
               <p className="border-l-2 border-accent-primary/40 pl-4 text-sm">
                 Looking for a full-time engineer?{" "}
-                <Link
+                <a
                   href={siteConfig.resumePath}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent-secondary hover:underline"
                 >
                   View my resume
-                </Link>{" "}
+                </a>{" "}
                 or get in touch below.
               </p>
 

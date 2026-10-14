@@ -32,14 +32,14 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <Link
+          <a
             href={siteConfig.resumePath}
             target="_blank"
             rel="noopener noreferrer"
             className="gradient-border inline-flex items-center justify-center border border-border-accent bg-bg-secondary px-4 py-2 font-mono text-xs text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent-primary"
           >
             Resume
-          </Link>
+          </a>
         </div>
 
         <DeferredMobileNav />

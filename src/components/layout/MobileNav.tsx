@@ -3,7 +3,6 @@
 import { siteConfig } from "@/data/site";
 import { scrollToSection } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -79,7 +78,7 @@ export function MobileNav() {
                 {link.label}
               </a>
             ))}
-            <Link
+            <a
               href={siteConfig.resumePath}
               target="_blank"
               rel="noopener noreferrer"
@@ -87,7 +86,7 @@ export function MobileNav() {
               className="mt-2 inline-flex w-full items-center justify-center border border-accent-primary bg-gradient-to-r from-accent-primary to-accent-secondary px-6 py-3 font-mono text-sm font-medium text-white touch-manipulation"
             >
               View Resume
-            </Link>
+            </a>
           </div>
         </div>
       )}
