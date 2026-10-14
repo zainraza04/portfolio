@@ -11,7 +11,8 @@
   --accent-glow: #6d28d9;
   --text-primary: #e2e8f0;
   --text-secondary: #94a3b8;
-  --text-muted: #475569;
+  /* #7a8ba3 keeps muted hierarchy while meeting WCAG AA (≥4.5:1) on dark surfaces */
+  --text-muted: #7a8ba3;
   --success: #10b981;
   --warning: #f59e0b;
   --terminal-green: #00ff41;
@@ -130,12 +131,12 @@ h6 {
     color-mix(in srgb, var(--accent-primary) 3%, transparent) 2px,
     color-mix(in srgb, var(--accent-primary) 3%, transparent) 4px
   );
-  animation: scanline 8s linear infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* Animate only on fine pointers + no reduced-motion (skips Lighthouse mobile CPU cost) */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .scanline-overlay {
-    animation: none;
+    animation: scanline 8s linear infinite;
   }
 }
 

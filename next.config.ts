@@ -5,6 +5,22 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "react-icons", "framer-motion"],
     inlineCss: true,
   },
+  // Next still injects baseline polyfills into the shared runtime chunk;
+  // alias them away for modern-only browsers (matches Lighthouse "Legacy JS").
+  turbopack: {
+    resolveAlias: {
+      "../build/polyfills/polyfill-module": "./src/lib/empty-polyfill.js",
+      "next/dist/build/polyfills/polyfill-module": "./src/lib/empty-polyfill.js",
+    },
+  },
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "../build/polyfills/polyfill-module": false,
+      "next/dist/build/polyfills/polyfill-module": false,
+    };
+    return config;
+  },
   async headers() {
     return [
       {
