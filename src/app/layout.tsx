@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
-  display: "optional",
-  preload: false,
+  display: "swap",
+  preload: true,
 });
 
 const siteUrl = siteConfig.siteUrl;

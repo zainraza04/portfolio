@@ -35,7 +35,7 @@ export function Hero() {
           Zain Raza · Full-Stack Developer
         </p>
 
-        <h1 className="hero-lcp mb-6 max-w-4xl text-2xl text-text-primary sm:text-4xl">
+        <h1 className="mb-6 max-w-4xl text-2xl text-text-primary sm:text-4xl">
           Full-Stack Developer building scalable web products for{" "}
           <span className="gradient-text">startups and businesses.</span>
         </h1>
