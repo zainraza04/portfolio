@@ -65,6 +65,31 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  name: siteConfig.name,
+  jobTitle: siteConfig.role,
+  url: siteUrl,
+  email: siteConfig.email,
+  sameAs: [siteConfig.social.github, siteConfig.social.linkedin],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "NestJS",
+    "TypeScript",
+    "PostgreSQL",
+    "Node.js",
+    "Full-Stack Development",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lahore",
+    addressCountry: "PK",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -76,6 +101,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
     >
       <body className="relative min-h-full bg-bg-primary text-text-primary antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <ClientShell>{children}</ClientShell>
       </body>
     </html>

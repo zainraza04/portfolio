@@ -59,6 +59,21 @@ export function getPostBySlug(slug: string): BlogPostWithContent | null {
   return null;
 }
 
+export function getRawPostMarkdown(slug: string): string | null {
+  for (const filename of getBlogFilePaths()) {
+    const filePath = path.join(BLOG_DIR, filename);
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const { data } = matter(fileContents);
+    const postSlug = data.slug ?? filename.replace(/\.md$/, "");
+
+    if (postSlug === slug) {
+      return fileContents;
+    }
+  }
+
+  return null;
+}
+
 export function getAllSlugs(): string[] {
   return getAllPosts().map((post) => post.slug);
 }

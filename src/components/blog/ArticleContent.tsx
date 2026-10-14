@@ -1,14 +1,40 @@
 import type { Components } from "react-markdown";
+import type { ReactNode } from "react";
+import { Children } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+function slugifyHeading(children: ReactNode): string {
+  const text = Children.toArray(children)
+    .map((child) =>
+      typeof child === "string" || typeof child === "number" ? String(child) : "",
+    )
+    .join("");
+
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+}
+
 const markdownComponents: Components = {
-  h2: ({ children }) => (
-    <h2 className="mb-4 mt-10 text-2xl text-text-primary first:mt-0">{children}</h2>
-  ),
-  h3: ({ children }) => (
-    <h3 className="mb-3 mt-8 text-xl text-text-primary">{children}</h3>
-  ),
+  h2: ({ children }) => {
+    const id = slugifyHeading(children);
+    return (
+      <h2 id={id} className="mb-4 mt-10 text-2xl text-text-primary first:mt-0">
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children }) => {
+    const id = slugifyHeading(children);
+    return (
+      <h3 id={id} className="mb-3 mt-8 text-xl text-text-primary">
+        {children}
+      </h3>
+    );
+  },
   p: ({ children }) => (
     <p className="mb-4 leading-relaxed text-text-secondary">{children}</p>
   ),

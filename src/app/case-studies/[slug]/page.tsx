@@ -2,6 +2,7 @@ import { CaseStudyLayout } from "@/components/case-studies/CaseStudyLayout";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/data/case-studies";
+import { siteConfig } from "@/data/site";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -53,8 +54,42 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound();
   }
 
+  const siteUrl = siteConfig.siteUrl;
+  const pageUrl = `${siteUrl}/case-studies/${caseStudy.slug}`;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Case Studies",
+        item: `${siteUrl}/#work`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: caseStudy.title,
+        item: pageUrl,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <Navbar />
       <CaseStudyLayout caseStudy={caseStudy} />
       <Footer />

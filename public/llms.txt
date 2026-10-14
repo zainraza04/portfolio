@@ -1,0 +1,64 @@
+# Zain Raza — Full-Stack Developer
+
+> Full-Stack Developer building production-ready SaaS products, web applications, dashboards, and backend systems using Next.js, React, NestJS, and TypeScript.
+
+## About
+
+- Name: Zain Raza
+- Role: Full-Stack Developer
+- Location: Lahore, Pakistan
+- Availability: Available for remote opportunities
+- Focus: Scalable web products for startups and businesses — SaaS platforms, customer-facing apps, dashboards, APIs, and internal tools
+
+## Skills
+
+- Frontend: React, Next.js, TypeScript, Redux Toolkit, Tailwind CSS
+- Backend: Node.js, NestJS, Express.js, REST APIs, Prisma
+- Databases & Platforms: PostgreSQL, Supabase, Firebase, Docker
+- Integrations & Delivery: Stripe, real-time systems, authentication, testing, deployment, SEO / SSR / ISR
+
+## Experience
+
+- Full Stack Developer at CodeFulcrum (August 2025 – Present)
+- Frontend Developer at Cloudpacer (July 2023 – August 2025)
+- Full Stack Developer at ILI.Digital (June 2022 – July 2023)
+
+## Projects
+
+- [YupUp Business App](https://zainraza.dev/case-studies/yupup): Vendor workspace for a service marketplace — orders, appointments, payments, messaging
+- [Neblo AI](https://zainraza.dev/case-studies/neblo-ai): Transportation management platform for brokers and carriers — load board, live tracking, dispatch
+- [DignifyX Admin Hub](https://zainraza.dev/case-studies/dignifyx): Multi-tenant administration platform for users, teams, learning content, and reporting
+- [RealFinder](https://zainraza.dev/case-studies/realfinder): Multi-role property marketplace with discovery, dashboards, and verification workflows
+- AI & U (SellersGPT): Consumer product for discovering and comparing AI tools and software
+- Podfolio: Creator platform for podcasters to curate and embed YouTube episodes
+- Xply-Tech: Production marketing platform for a software company
+
+## Blog
+
+Articles on AI context engineering, token optimization, and developer tooling:
+
+- [AI Context Engineering Stack](https://zainraza.dev/blog/ai-context-engineering-stack-token-optimization): Cutting token usage across the agent pipeline
+- [The Caveman Protocol](https://zainraza.dev/blog/caveman-protocol-token-reduction): A simple rule that slashes AI token usage
+- [Hooks for AI Context Enforcement](https://zainraza.dev/blog/hooks-ai-context-enforcement): Enforcement layer for token optimization
+- [Semble](https://zainraza.dev/blog/semble-code-search-token-optimization): Semantic code retrieval instead of grep-and-read
+- [Code Review Graph](https://zainraza.dev/blog/code-review-graph-context-optimization): Reviewing impact, not files
+- [Context Mode](https://zainraza.dev/blog/context-mode-context-virtualization): Scaling AI without scaling context
+- [Context-Mode MCP Firewall](https://zainraza.dev/blog/context-mode-mcp-context-firewall): Sandboxing tool output for AI agents
+- [.cursorignore](https://zainraza.dev/blog/cursorignore-token-optimization): Excluding irrelevant files from AI indexing
+- [Prompt Caching](https://zainraza.dev/blog/prompt-caching-ai-token-optimization): Reusing intelligence instead of recomputing it
+- [RTK (Rust Token Killer)](https://zainraza.dev/blog/rtk-rust-token-killer-cli-compression): Compressing CLI noise before it hits context
+
+Markdown versions of blog posts are available at `{url}.md` (for example `/blog/caveman-protocol-token-reduction.md`).
+
+## Contact
+
+- Email: cs.zainraza@gmail.com
+- Website: https://zainraza.dev
+- GitHub: https://github.com/zainraza04
+- LinkedIn: https://www.linkedin.com/in/zainraza-dev
+- Resume: https://zainraza.dev/cv.pdf
+
+## Optional
+
+- Sitemap: https://zainraza.dev/sitemap.xml
+- Robots: https://zainraza.dev/robots.txt

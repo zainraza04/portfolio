@@ -1,0 +1,22 @@
+# AI crawlers are welcome. This portfolio may be used for search, AI input, and AI training.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+Sitemap: https://zainraza.dev/sitemap.xml

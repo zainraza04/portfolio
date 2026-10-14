@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Articles about AI context engineering, token optimization, context window, React, Next.js, system design, and developer tooling by Zain Raza.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {
